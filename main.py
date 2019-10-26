@@ -8,8 +8,8 @@ getint = lambda bools : [1 if i else 0 for i in bools]
 
 def game(rule,inital,itr):
     """
-    rule and initial are a number that can be writen in a 8-bit
-    register and itr the number of iteration. The function return
+    rule and initial are numbers that can be writen in a 8-bit
+    register and itr the number of iteration. The function returns
     and 2D-array with integers : {0, 1}
     """
     rule = getrule(rule)[::-1]
