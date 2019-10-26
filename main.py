@@ -30,3 +30,5 @@ def game(rule,inital,itr):
 def out(states):
     for i in states:
         print(i)
+
+game(30 , 2**15 , 15)
