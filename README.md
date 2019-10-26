@@ -1,4 +1,4 @@
-# Elementary cellular automata [![Build Status](https://travis-ci.org/SaschaAlex/wolframCellular.svg?branch=master)](https://travis-ci.org/SaschaAlex/Laplacian-Solver)  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+# Elementary cellular automata [![Build Status](https://travis-ci.org/SaschaAlex/wolframCellular.svg?branch=master)](https://travis-ci.org/SaschaAlex/wolframCellular)  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 An elementary cellular automata written in python 3
 
 
