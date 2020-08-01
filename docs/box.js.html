@@ -1,0 +1,176 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> box.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    API Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="global.html#Box">Box</a></li><li><a href="Config.html">Config</a></li><li><a href="global.html#Sprinkler">Sprinkler</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addMinutes">addMinutes</a></li><li><a href="global.html#hasToDrizzle">hasToDrizzle</a></li><li><a href="global.html#readConfig">readConfig</a></li><li><a href="global.html#scheduling">scheduling</a></li><li><a href="global.html#schedulingDrizzling">schedulingDrizzling</a></li><li><a href="global.html#toBox">toBox</a></li><li><a href="global.html#toSprinkler">toSprinkler</a></li><li><a href="global.html#toSprinklerQueue">toSprinklerQueue</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>box.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const sprinklerModule = require("./sprinkler.js");
+
+/**
+ * @typedef {sprinklerModule.Sprinkler} Sprinkler
+ */
+
+/**
+ * @description This class contains all
+ * information about a box of sprinklers.
+ */
+class Box {
+    /**
+     * @param {Number} id - The unique id of the box
+     * @param {Number} status - Either 1 or 0 , 1 on and 0 off
+     * @param {String} name - The box name
+     * @param {Object} auth - The credential for the api
+     * @param {Sprinkler[]} sprinklers - Sprinkler list
+     */
+    constructor(id, status, name, auth, sprinklers) {
+        this._id = id;
+        this._name = name;
+        this._status = status;
+        this._auth = auth;
+        this._sprinklers = sprinklers;
+    }
+    get getId() {return this._id}
+    get getName() {return this._name}
+    get getStatus() {return this._status}
+    get getAuth() {return this._auth}
+    get getSprinklers() {return this._sprinklers}
+
+    set setId(id) {this._id = id}
+    set setName(name) {this._name = name}
+    set setStatus(status) {this._status = status}
+    set setAuth(auth) {this._auth = auth}
+    set setSprinklers(sprinklers) {this._sprinklers = sprinklers}
+
+    switchStatus() {this._status = (this._status + 1) % 2}
+
+    isOn() {return this._status == 1}
+
+    hasValidAuth() {return (this._auth.url !== undefined &amp;&amp; this._auth.apiKey !== undefined)}
+    
+    
+}
+
+/**
+ * @description This is function will take a
+ * parsed object from a json file and turn it into a Box
+ * object
+ * @param {object} jsonBox
+ */
+function toBox(jsonBox) {
+    var {id,status,name,auth,sprinklers} = jsonBox;
+    return new Box(id, status, name, auth, sprinklers.map(sprinklerModule.toSprinkler));
+}
+
+module.exports = {
+    Box   : Box,
+    toBox : toBox
+};</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.5</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+</body>
+</html>
